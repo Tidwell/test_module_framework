@@ -19,15 +19,14 @@
         }
     }
 
-    //define the methods we want to expose on BI
-    exposed = {
-        addModule: addModule
-    }
-    //add them to the window
     if (window.BI) {
         throw new Error('BI already exists on window.')
     } else {
-        window.BI = exposed;
+        //define the methods we want to expose on BI
+        //and add them to the window object
+        window.BI = {
+            addModule: addModule
+        };
     }
 
 })($, window);
