@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		<script src="js/base.js"></script>
+		<script src="js/modules/widgets.js"></script>
+		<script src="js/modules/widgets/lib_widgets.js"></script>
+		<script src="js/modules/widgets/myWidget.js"></script>
+	</head>
+	<body>
+		<form action="/cms/post/save" method="post" data-source="url that returns json object">
+		  	<p><label>vertical</label><select name="vertical" data-widget="myWidget" data-source="url that returns json object of verticals"></select></p>
+		  	<p><label>Publish Time</label><input name="publishtime" type="text" data-widget="datepicker" /></p>
+		  	<p><label>Tweet Verticals</label><input name="tweetverticals" type="checkbox" /></p>
+		  	<p><label>Title</label><input name="title" type="text" /></p>
+		  	<p><textarea name="body" data-widget="myWidget"></textarea></p>
+		  	<p><input name="categories" type="text" data-widget="categories" /></p>
+		  	<input type="hidden" name="id" />
+		  	<p><input type="submit" /></p>
+		</form>
+	</body>
+</html>
