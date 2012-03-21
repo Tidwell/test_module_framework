@@ -3,11 +3,11 @@
     Provides utility methods for adding features to itself
 
     This is a singleton defined using the Revealing Module Pattern
+
+    Dependancy: jquery
 */
 
 (function($, window, undefined) {
-    var exposed;
-
     //takes a key (string) and an object to add to the
     //BI global as a module
     var addModule = function(name, obj) {
@@ -17,6 +17,11 @@
         else {
             exposed[name] = obj;
         }
+    }   
+
+    
+    var exposed = {
+        addModule: addModule
     }
 
     if (window.BI) {
@@ -24,9 +29,12 @@
     } else {
         //define the methods we want to expose on BI
         //and add them to the window object
-        window.BI = {
-            addModule: addModule
-        };
+        window.BI = exposed;
     }
+    
+
+    
+
+    
 
 })($, window);

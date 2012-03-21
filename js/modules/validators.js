@@ -1,10 +1,7 @@
 /*
-    MODULE WIDGETS
+    MODULE VALIDATORS
 
-    Module providing widget capabilities to the page
-    Searches on DOM ready for data-widget attributes, and
-    calls the corresponding jquery plugin if it has been registerd
-    as a valid widget
+    Module providing form validation
 
     This uses the Revealing Module Pattern
 
@@ -15,7 +12,7 @@
     /* PRIVATE VARS */
     
     //container to store ids of auto-initialized jquery plugins
-    var widgets = [];
+    var validators = [];
     var initCalled = false;
 
     /* METHODS */
@@ -24,29 +21,31 @@
     //based on data-widget attributes in markup
     //@void
     var init = function() {
-        widgets.forEach(function(id, index) {
-            var selector = '*[data-widget="' + id + '"]';
+        validators.forEach(function(obj, index) {
+            var id = obj.id;
+            var method = obj.method;
+            var selector = '*[data-validate="' + id + '"]';
             var elements = $(selector);
             if (elements.length) {
-                elements[id]();
+                $('form').submit(function() {method(elements); return false;});
             }
         });
         initCalled = true;
     }
 
-    //registers a widget
+    //registers a validator
     //@string
-    var addWidget = function(id) {
+    var addValidator = function(id,func) {
         if (initCalled) {
-            throw new Error('Init was already called, cannot add additional widgets')
+            throw new Error('Init was already called, cannot add additional validator')
         }
-        widgets.push(id);
+        validators.push({id: id,method: func});
     }
 
 
     /* Expose only the methods we want exposed */
-    BI.addModule('widgets', {
-   		addWidget: addWidget
+    BI.addModule('validation', {
+   		addValidator: addValidator
     });
 
     //call init on document ready

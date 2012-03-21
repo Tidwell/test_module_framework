@@ -7,6 +7,8 @@
     Right now this sample is using the constructor 
     pattern, there may be a better way to construct this
     for consistancy sake
+
+    Dependancy: base.js, widgets.js
 */
 
 (function($) {
