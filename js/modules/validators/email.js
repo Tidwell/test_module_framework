@@ -13,26 +13,16 @@
 
 (function($,BI,undefined) {
     var email = function(els) {
-        console.log(els.val())
-        BI.events.publish('emailInvalid');
+        var regEx = new RegExp(/[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)\b/)
+        els.each(function() {
+            var el = $(this);
+            if (!regEx.exec(el.val())) {
+                alert('invalid email')
+            }
+        })
     }
 
-    var emailInvalid = function(el){
-        $(el).css('border','red');
-    }
 
-    BI.events.subscribe('emailInvalid',emailInvalid);
     //Register the widget with the BI object
     BI.validation.addValidator('email', email);
 })(jQuery,BI);
-
-
-
-(function($,BI,undefined) {
-    var date = function(els) {
-        console.log(els.val())
-    }
-    //Register the widget with the BI object
-    BI.validation.addValidator('date', date);
-})(jQuery,BI);
-

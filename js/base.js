@@ -31,10 +31,4 @@
         //and add them to the window object
         window.BI = exposed;
     }
-    
-
-    
-
-    
-
 })($, window);

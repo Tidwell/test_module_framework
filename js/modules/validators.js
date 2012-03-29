@@ -27,7 +27,13 @@
             var selector = '*[data-validate="' + id + '"]';
             var elements = $(selector);
             if (elements.length) {
-                $('form').submit(function() {method(elements); return false;});
+                elements.each(function() {
+                    var el = $(this);
+                    el.parents('form').submit(function() {
+                        method(el); 
+                        return false;
+                    });
+                })
             }
         });
         initCalled = true;
