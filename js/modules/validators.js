@@ -29,6 +29,7 @@
             if (elements.length) {
                 elements.each(function() {
                     var el = $(this);
+                    //get the parent form, and attach validate to the submit method
                     el.parents('form').submit(function() {
                         method(el); 
                         return false;

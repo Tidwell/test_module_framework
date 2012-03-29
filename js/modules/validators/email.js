@@ -1,14 +1,14 @@
 /*
     VALIDATOR EMAIL
 
-    Widget implimentation (a jquery plugin with 
-    a call to register with the BI widget handler)
+    Validator implimentation.  
+    Validators require a name and a method to regiser with addValidator
+    
+    When a corresponding data-validate="NAME" is found in the markup,
+    the validator module will automatically call the corresponding validator
+    function passing the element(s)
 
-    Right now this sample is using the constructor 
-    pattern, there may be a better way to construct this
-    for consistancy sake
-
-    Dependancy: base.js, widgets.js
+    Dependancy: base.js, validators.js
 */
 
 (function($,BI,undefined) {
@@ -22,7 +22,6 @@
         })
     }
 
-
-    //Register the widget with the BI object
+    //Register the validator
     BI.validation.addValidator('email', email);
 })(jQuery,BI);
